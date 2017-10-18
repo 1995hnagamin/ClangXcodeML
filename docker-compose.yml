@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  workspace:
+    image: koyama41/clang-3.9-sandbox
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /home:/home
+      - /usr/local/clang-4.0.1:/usr/local/clang-4.0.1
+    tty: true
