@@ -13,4 +13,4 @@ before_install:
   - docker-compose up -d
 
 script:
-  - cat tests/cmds | docker-compose run workspace make -C XcodeMLtoCXX check
+  - cat tests/cmds | docker-compose run workspace
