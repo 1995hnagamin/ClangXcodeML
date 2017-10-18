@@ -1,0 +1,6 @@
+sudo: false
+
+language: cpp
+
+script:
+  - make -C XcodeMLtoCXX check
