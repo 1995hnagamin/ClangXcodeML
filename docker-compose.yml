@@ -6,6 +6,4 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime
       - /home:/home
-      - /usr/bin:/usr/bin
       - /usr/local/clang-4.0.1:/usr/local/clang-4.0.1
-    tty: true
