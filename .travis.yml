@@ -9,7 +9,7 @@ env:
   DOCKER_COMPOSE_VERSION: 1.8.0
 
 before_install:
-  - docker pull koyama41/clang-3.9-sandbox
+  - docker-compose up -d
 
 script:
-  - make -C XcodeMLtoCXX check
+  - docker-compose run workspace make -C XcodeMLtoCXX check
