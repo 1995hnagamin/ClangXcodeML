@@ -1,6 +1,15 @@
-sudo: false
+sudo: required
 
 language: cpp
+
+services:
+  - docker
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.8.0
+
+before_install:
+  - docker pull koyama41/clang-3.9-sandbox
 
 script:
   - make -C XcodeMLtoCXX check
