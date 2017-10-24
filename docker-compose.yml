@@ -6,3 +6,4 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime
       - /home:/home
+      - .:/worktree
