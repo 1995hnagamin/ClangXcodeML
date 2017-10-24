@@ -11,6 +11,7 @@ env:
 before_install:
   - pwd
   - docker-compose up -d
+  - docker-compose ps
 
 script:
-  - docker-compose exec make -C XcodeMLtoCXX check
+  - docker-compose exec workspace make -C XcodeMLtoCXX check
