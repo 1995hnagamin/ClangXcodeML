@@ -1,0 +1,6 @@
+set -xe
+
+cd /home/travis/build/1995hnagamin/ClangXcodeML/
+ls
+make -C XcodeMLtoCXX check
+exit
