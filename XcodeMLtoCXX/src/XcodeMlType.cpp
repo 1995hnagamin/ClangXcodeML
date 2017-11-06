@@ -8,6 +8,8 @@
 #include "llvm/ADT/Optional.h"
 #include "StringTree.h"
 #include "XcodeMlType.h"
+#include "XcodeMlNns.h"
+#include "XcodeMlName.h"
 #include "XcodeMlEnvironment.h"
 #include "llvm/Support/Casting.h"
 
@@ -625,6 +627,23 @@ ClassType::ClassType(const DataTypeIdent &ident,
       classScopeSymbols(symbols) {
 }
 
+ClassType::ClassType(
+    const DataTypeIdent &ident, const ClassType::Symbols &symbols)
+    : Type(TypeKind::Class, ident),
+      name_(),
+      bases_(),
+      classScopeSymbols(symbols) {
+}
+
+ClassType::ClassType(const DataTypeIdent &ident,
+    const std::vector<BaseClass> &b,
+    const ClassType::Symbols &symbols)
+    : Type(TypeKind::Class, ident),
+      name_(),
+      bases_(b),
+      classScopeSymbols(symbols) {
+}
+
 CodeFragment
 ClassType::makeDeclaration(CodeFragment var, const Environment &) {
   assert(name_);
@@ -647,6 +666,10 @@ ClassType::setName(const std::string &name) {
   name_ = makeTokenNode(name);
 }
 
+void
+ClassType::setName(const CodeFragment &name) {
+  name_ = name;
+}
 ClassType::Symbols
 ClassType::getSymbols() const {
   return classScopeSymbols;
@@ -781,14 +804,14 @@ makeStructType(const DataTypeIdent &ident,
 
 TypeRef
 makeClassType(const DataTypeIdent &ident, const ClassType::Symbols &symbols) {
-  return std::make_shared<ClassType>(ident, nullptr, symbols);
+  return std::make_shared<ClassType>(ident, symbols);
 }
 
 TypeRef
 makeClassType(const DataTypeIdent &ident,
     const std::vector<ClassType::BaseClass> &bases,
     const ClassType::Symbols &symbols) {
-  return std::make_shared<ClassType>(ident, nullptr, bases, symbols);
+  return std::make_shared<ClassType>(ident, bases, symbols);
 }
 
 TypeRef

@@ -45,7 +45,7 @@
           <xsl:apply-templates select="@*" />
           <xsl:apply-templates select="name" />
 
-          <xsl:apply-templates select="params" />
+          <xsl:apply-templates select="TypeLoc" />
 
           <xsl:if test="@class='CXXConstructor'">
             <constructorInitializerList>
@@ -95,15 +95,6 @@
   </xsl:template>
 
   <xsl:template match="clangDecl[@class='Record']" />
-
-  <xsl:template match="clangDecl[@class='CXXRecord']">
-    <classDecl>
-      <xsl:apply-templates select="@*" />
-      <xsl:apply-templates
-        select="clangDecl[
-        not (@is_implicit = '1' or @is_implicit = 'true')]" />
-    </classDecl>
-  </xsl:template>
 
   <xsl:template match="clangDecl[@class='Field']">
     <varDecl>
@@ -271,9 +262,9 @@
           <memberFunction>
             <memberExpr>
               <xsl:apply-templates select="clangStmt[2]" />
-              <operator>
+              <name name_kind="operator">
                 <xsl:value-of select="@xcodeml_operator_kind" />
-              </operator>
+              </name>
             </memberExpr>
           </memberFunction>
           <arguments>
