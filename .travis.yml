@@ -24,5 +24,4 @@ before_install:
   - pwd
 
 script:
-  - travis_wait docker pull hnagamin/llvm-3.9:latest
   - docker-compose run workspace make -C /worktree/XcodeMLtoCXX check
