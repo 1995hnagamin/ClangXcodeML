@@ -1,0 +1,15 @@
+sudo: required
+
+language: cpp
+
+services:
+  - docker
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.8.0
+
+before_install:
+  - pwd
+
+script:
+  - docker-compose run workspace make -C /worktree/XcodeMLtoCXX check
